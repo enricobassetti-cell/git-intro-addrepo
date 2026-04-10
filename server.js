@@ -1,8 +1,13 @@
-const express = require('express');
-const yahooFinance = require('yahoo-finance2').default;
-const Parser = require('rss-parser');
-const cors = require('cors');
-const path = require('path');
+import express from 'express';
+import yahooFinance from 'yahoo-finance2';
+import Parser from 'rss-parser';
+import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const rss = new Parser({ timeout: 8000, headers: { 'User-Agent': 'Mozilla/5.0' } });
