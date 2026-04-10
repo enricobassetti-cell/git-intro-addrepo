@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — StockPulse</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__logo">&#9730; <span>StockPulse</span></div>
+  <ul class="nav__links">
+    <li><a href="/index.html">Dashboard</a></li>
+    <li><a href="/screener.html">Screener</a></li>
+    <li><a href="/portfolio.html" class="active">Portfolio</a></li>
+  </ul>
+  <div class="nav__search">
+    <svg class="nav__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="searchInput" placeholder="Search stocks…" autocomplete="off" />
+    <div class="search-dropdown" id="searchDropdown"></div>
+  </div>
+  <div class="nav__spacer"></div>
+  <button class="nav__btn" id="addManualBtn">+ Add Position</button>
+</nav>
+
+<div class="page page--noticker">
+
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.5rem">
+    <div>
+      <h1 style="margin-bottom:0.2rem">My Portfolio</h1>
+      <p style="color:var(--text2);font-size:0.875rem">Track performance, risk, and allocation across all your positions</p>
+    </div>
+    <div style="display:flex;gap:0.5rem">
+      <button class="btn btn-secondary btn-sm" id="exportBtn">&#8615; Export CSV</button>
+      <button class="btn btn-danger btn-sm" id="clearBtn">Clear All</button>
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <div id="emptyState" style="display:none">
+    <div class="card" style="padding:4rem 2rem;text-align:center">
+      <div style="font-size:3rem;margin-bottom:1rem">&#128202;</div>
+      <h2 style="margin-bottom:0.5rem;color:var(--text1)">No positions yet</h2>
+      <p style="color:var(--text2);margin-bottom:1.5rem">Search for a stock and add it to your portfolio, or use the button above.</p>
+      <a href="/screener.html" class="btn btn-primary">Browse Stocks</a>
+    </div>
+  </div>
+
+  <!-- Portfolio content -->
+  <div id="portfolioContent">
+
+    <!-- Summary cards -->
+    <div class="portfolio-summary" id="summaryCards">
+      <div class="summary-card skeleton" style="height:90px"></div>
+      <div class="summary-card skeleton" style="height:90px"></div>
+      <div class="summary-card skeleton" style="height:90px"></div>
+      <div class="summary-card skeleton" style="height:90px"></div>
+    </div>
+
+    <!-- Charts + Risk -->
+    <div class="portfolio-grid">
+
+      <!-- Left: Performance chart + Holdings table -->
+      <div>
+        <div class="card" style="padding:1rem;margin-bottom:1rem">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+            <h3>Performance</h3>
+            <div style="font-size:0.75rem;color:var(--text3)">Based on current market prices</div>
+          </div>
+          <div style="position:relative;height:220px">
+            <canvas id="perfChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Holdings table -->
+        <div class="section-title" style="margin-bottom:0.5rem">Holdings</div>
+        <div class="card">
+          <div class="data-table-wrap">
+            <table class="data-table" id="holdingsTable">
+              <thead>
+                <tr>
+                  <th>Symbol</th>
+                  <th>Name</th>
+                  <th class="num">Shares</th>
+                  <th class="num">Avg Cost</th>
+                  <th class="num">Current</th>
+                  <th class="num">Market Value</th>
+                  <th class="num">Gain / Loss</th>
+                  <th class="num">Return %</th>
+                  <th class="num">Day Change</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="holdingsBody">
+                <tr><td colspan="10">
+                  <div class="loading-rows" style="padding:1rem">
+                    <div class="skeleton loading-row"></div>
+                    <div class="skeleton loading-row"></div>
+                  </div>
+                </td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Allocation + Risk -->
+      <div style="display:flex;flex-direction:column;gap:1rem">
+
+        <!-- Allocation pie -->
+        <div class="card" style="padding:1rem">
+          <h3 style="margin-bottom:0.75rem">Allocation</h3>
+          <div style="position:relative;height:200px">
+            <canvas id="allocChart"></canvas>
+          </div>
+          <div id="allocLegend" style="margin-top:0.75rem;display:flex;flex-direction:column;gap:4px"></div>
+        </div>
+
+        <!-- Risk metrics -->
+        <div class="card" style="padding:1rem">
+          <h3 style="margin-bottom:0.5rem">Risk Metrics</h3>
+          <p style="font-size:0.75rem;color:var(--text3);margin-bottom:0.75rem">Estimates based on individual stock betas and portfolio weights</p>
+          <div class="risk-grid" id="riskGrid">
+            <div class="skeleton" style="height:60px"></div>
+            <div class="skeleton" style="height:60px"></div>
+            <div class="skeleton" style="height:60px"></div>
+            <div class="skeleton" style="height:60px"></div>
+          </div>
+        </div>
+
+        <!-- Diversification score -->
+        <div class="card" style="padding:1rem">
+          <h3 style="margin-bottom:0.75rem">Diversification</h3>
+          <div id="divScore" style="text-align:center;padding:0.5rem">
+            <div style="font-size:2.5rem;font-weight:800;font-family:monospace" id="divNum">—</div>
+            <div style="font-size:0.78rem;color:var(--text2);margin-top:0.25rem" id="divLabel">—</div>
+          </div>
+          <div style="background:var(--bg3);border-radius:4px;height:8px;overflow:hidden;margin-top:0.75rem">
+            <div id="divBar" style="height:100%;border-radius:4px;transition:width 0.6s ease;background:var(--accent)"></div>
+          </div>
+          <div id="divNote" style="font-size:0.75rem;color:var(--text3);margin-top:0.5rem;text-align:center"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end portfolioContent -->
+
+</div><!-- end page -->
+
+<!-- Add Position Modal -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <h3>Add Position</h3>
+    <div class="form-row">
+      <label class="form-label">Symbol</label>
+      <input type="text" class="form-input" id="modalSymbolInput" placeholder="e.g. AAPL" autocomplete="off" style="text-transform:uppercase" />
+    </div>
+    <div class="form-row">
+      <label class="form-label">Purchase Price (USD)</label>
+      <input type="number" class="form-input" id="modalBuyPrice" step="0.01" min="0" placeholder="0.00" />
+    </div>
+    <div class="form-row">
+      <label class="form-label">Number of Shares</label>
+      <input type="number" class="form-input" id="modalShares" step="1" min="1" value="1" />
+    </div>
+    <div class="form-row">
+      <label class="form-label">Purchase Date</label>
+      <input type="date" class="form-input" id="modalBuyDate" />
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" id="cancelAddModal">Cancel</button>
+      <button class="btn btn-primary" id="confirmAddModal">Add Position</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <span>Portfolio data stored locally in your browser. Data provided by Yahoo Finance · Not financial advice.</span>
+  <span>StockPulse &copy; 2026</span>
+</footer>
+
+<script type="module" src="/js/portfolio.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stock Screener — StockPulse</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__logo">&#9730; <span>StockPulse</span></div>
+  <ul class="nav__links">
+    <li><a href="/index.html">Dashboard</a></li>
+    <li><a href="/screener.html" class="active">Screener</a></li>
+    <li><a href="/portfolio.html">Portfolio</a></li>
+  </ul>
+  <div class="nav__search">
+    <svg class="nav__search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="searchInput" placeholder="Search stocks…" autocomplete="off" />
+    <div class="search-dropdown" id="searchDropdown"></div>
+  </div>
+  <div class="nav__spacer"></div>
+  <a href="/portfolio.html"><button class="nav__btn">&#128202; Portfolio</button></a>
+</nav>
+
+<div class="page page--noticker">
+
+  <div style="margin-bottom:1rem">
+    <h1 style="margin-bottom:0.25rem">Stock Screener</h1>
+    <p style="color:var(--text2);font-size:0.875rem">Filter and discover stocks using pre-built screens powered by Yahoo Finance</p>
+  </div>
+
+  <!-- Screen presets -->
+  <div class="screener-toolbar" id="screenBtns">
+    <button class="screen-btn active" data-screen="most_actives">&#128293; Most Active</button>
+    <button class="screen-btn" data-screen="day_gainers">&#9651; Top Gainers</button>
+    <button class="screen-btn" data-screen="day_losers">&#9661; Top Losers</button>
+    <button class="screen-btn" data-screen="undervalued">&#128269; Undervalued Growth</button>
+    <button class="screen-btn" data-screen="growth_tech">&#9889; Growth Tech</button>
+    <button class="screen-btn" data-screen="small_caps">&#128081; Small Caps</button>
+  </div>
+
+  <!-- Count + sort info -->
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+    <span id="resultCount" style="font-size:0.8rem;color:var(--text3)">Loading…</span>
+    <span style="font-size:0.75rem;color:var(--text3)">Click column headers to sort &nbsp;·&nbsp; Click row to view stock</span>
+  </div>
+
+  <!-- Table -->
+  <div class="card">
+    <div class="data-table-wrap">
+      <table class="data-table" id="screenerTable">
+        <thead>
+          <tr>
+            <th data-col="symbol">Symbol</th>
+            <th data-col="name">Name</th>
+            <th data-col="price" class="num">Price</th>
+            <th data-col="changePct" class="num">Change %</th>
+            <th data-col="change" class="num">Change $</th>
+            <th data-col="volume" class="num">Volume</th>
+            <th data-col="mktCap" class="num">Mkt Cap</th>
+            <th data-col="pe" class="num">P/E</th>
+            <th data-col="week52High" class="num">52W High</th>
+            <th data-col="week52Low" class="num">52W Low</th>
+          </tr>
+        </thead>
+        <tbody id="screenerBody">
+          <tr><td colspan="10"><div class="loading-rows" style="padding:1rem"><div class="skeleton loading-row"></div><div class="skeleton loading-row"></div><div class="skeleton loading-row"></div></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p style="margin-top:0.75rem;font-size:0.75rem;color:var(--text3)">
+    Data sourced from Yahoo Finance. Updated on page load. Not financial advice.
+  </p>
+
+</div>
+
+<footer class="footer">
+  <span>Data provided by Yahoo Finance · For informational purposes only</span>
+  <span>StockPulse &copy; 2026</span>
+</footer>
+
+<script type="module" src="/js/screener.js"></script>
+</body>
+</html>
