@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 900 560" width="900" height="560">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#3A7BAA"/>
+      <stop offset="55%"  stop-color="#85B8D8"/>
+      <stop offset="100%" stop-color="#C6DFF0"/>
+    </linearGradient>
+    <linearGradient id="asphaltGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#6A6A6A"/>
+      <stop offset="100%" stop-color="#484848"/>
+    </linearGradient>
+    <linearGradient id="wallGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#9E9E96"/>
+      <stop offset="100%" stop-color="#BCBCB4"/>
+    </linearGradient>
+    <linearGradient id="farGround" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#7A8C6A"/>
+      <stop offset="100%" stop-color="#656E55"/>
+    </linearGradient>
+    <radialGradient id="carShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#000000" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ===== SKY ===== -->
+  <rect x="222" y="0" width="678" height="386" fill="url(#skyGrad)"/>
+
+  <!-- ===== CLOUDS ===== -->
+  <g opacity="0.82">
+    <ellipse cx="510" cy="62" rx="72" ry="22" fill="white"/>
+    <ellipse cx="468" cy="64" rx="48" ry="17" fill="white"/>
+    <ellipse cx="556" cy="63" rx="44" ry="16" fill="white"/>
+    <ellipse cx="756" cy="90" rx="58" ry="19" fill="white"/>
+    <ellipse cx="716" cy="92" rx="42" ry="15" fill="white"/>
+    <ellipse cx="798" cy="91" rx="38" ry="14" fill="white"/>
+    <ellipse cx="838" cy="55" rx="30" ry="11" fill="white" opacity="0.65"/>
+  </g>
+
+  <!-- ===== SWISS ALPS SILHOUETTE ===== -->
+  <!-- Distant hazy range -->
+  <polygon points="280,318 410,198 540,318" fill="#A2B2C2" opacity="0.45"/>
+  <polygon points="430,318 565,155 700,318" fill="#AAB8C8" opacity="0.45"/>
+  <polygon points="610,318 730,182 850,318" fill="#A2B2C2" opacity="0.40"/>
+  <polygon points="740,318 835,212 900,318" fill="#AABBC8" opacity="0.35"/>
+
+  <!-- Nearer clear range -->
+  <polygon points="240,318 372,188 504,318" fill="#7E8F9E" opacity="0.80"/>
+  <polygon points="378,318 518,138 658,318" fill="#748696" opacity="0.85"/>
+  <polygon points="542,318 672,172 802,318" fill="#7E8F9E" opacity="0.78"/>
+  <polygon points="680,318 776,196 872,318" fill="#788898" opacity="0.72"/>
+
+  <!-- Snow caps -->
+  <polygon points="355,235 372,188 389,235" fill="white" opacity="0.88"/>
+  <polygon points="497,187 518,138 539,187" fill="white" opacity="0.92"/>
+  <polygon points="648,220 672,172 696,220" fill="white" opacity="0.87"/>
+  <polygon points="752,244 776,196 800,244" fill="white" opacity="0.82"/>
+  <!-- Snow patches on shoulders -->
+  <polygon points="348,242 358,228 372,235" fill="white" opacity="0.55"/>
+  <polygon points="505,200 518,183 528,195" fill="white" opacity="0.50"/>
+
+  <!-- ===== FAR GROUND STRIP (fields / Mittelland) ===== -->
+  <rect x="222" y="312" width="678" height="35" fill="url(#farGround)" opacity="0.72"/>
+  <rect x="222" y="338" width="678" height="14" fill="#6A7458" opacity="0.60"/>
+
+  <!-- Trees (left of scene near wall) -->
+  <rect x="268" y="280" width="8" height="44" fill="#4E3E28"/>
+  <ellipse cx="272" cy="264" rx="22" ry="28" fill="#2E4E20"/>
+  <ellipse cx="272" cy="256" rx="15" ry="20" fill="#3A5E28"/>
+  <rect x="312" y="288" width="7" height="36" fill="#4E3E28"/>
+  <ellipse cx="315" cy="274" rx="18" ry="24" fill="#2E4E20"/>
+  <ellipse cx="315" cy="267" rx="12" ry="17" fill="#3A5E28"/>
+  <rect x="352" y="284" width="8" height="40" fill="#4E3E28"/>
+  <ellipse cx="356" cy="268" rx="20" ry="26" fill="#2E4E20"/>
+  <ellipse cx="356" cy="260" rx="14" ry="19" fill="#3A5E28"/>
+
+  <!-- ===== ZURICH BACKGROUND BUILDINGS ===== -->
+  <rect x="588" y="250" width="38" height="68" fill="#8594A4"/>
+  <rect x="630" y="262" width="28" height="56" fill="#7A8898"/>
+  <rect x="660" y="254" width="52" height="64" fill="#8594A4"/>
+  <rect x="714" y="268" width="26" height="50" fill="#9AAAB8"/>
+  <rect x="742" y="246" width="36" height="72" fill="#8594A4"/>
+  <rect x="780" y="258" width="58" height="60" fill="#7A8898"/>
+  <rect x="840" y="265" width="44" height="53" fill="#8594A4"/>
+  <rect x="860" y="250" width="40" height="68" fill="#9AAAB8"/>
+  <!-- Building windows -->
+  <rect x="596" y="257" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+  <rect x="606" y="257" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+  <rect x="596" y="268" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+  <rect x="606" y="268" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+  <rect x="668" y="260" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+  <rect x="678" y="260" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+  <rect x="688" y="260" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+  <rect x="668" y="272" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+  <rect x="688" y="272" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+  <rect x="750" y="253" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+  <rect x="762" y="253" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+  <rect x="750" y="265" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+  <rect x="762" y="265" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+  <rect x="790" y="264" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+  <rect x="804" y="264" width="5" height="6" fill="#C8D5E2" opacity="0.65"/>
+
+  <!-- ===== ROAD / TRANSITION STRIP ===== -->
+  <rect x="222" y="350" width="678" height="22" fill="#858580"/>
+  <rect x="222" y="368" width="678" height="8" fill="#9A9A95"/>
+  <!-- Curb -->
+  <rect x="222" y="374" width="678" height="12" fill="#AAAA9E"/>
+
+  <!-- ===== BUILDING / WALL (left full column) ===== -->
+  <rect x="0" y="0" width="226" height="560" fill="url(#wallGrad)"/>
+
+  <!-- Wall subtle horizontal texture (concrete joints) -->
+  <g stroke="#929288" stroke-width="0.6" opacity="0.35">
+    <line x1="0" y1="18"  x2="226" y2="18"/>
+    <line x1="0" y1="36"  x2="226" y2="36"/>
+    <line x1="0" y1="54"  x2="226" y2="54"/>
+    <line x1="0" y1="72"  x2="226" y2="72"/>
+    <line x1="0" y1="90"  x2="226" y2="90"/>
+    <line x1="0" y1="108" x2="226" y2="108"/>
+    <line x1="0" y1="126" x2="226" y2="126"/>
+    <line x1="0" y1="144" x2="226" y2="144"/>
+    <line x1="0" y1="162" x2="226" y2="162"/>
+    <line x1="0" y1="180" x2="226" y2="180"/>
+    <line x1="0" y1="198" x2="226" y2="198"/>
+    <line x1="0" y1="216" x2="226" y2="216"/>
+    <line x1="0" y1="234" x2="226" y2="234"/>
+    <line x1="0" y1="252" x2="226" y2="252"/>
+    <line x1="0" y1="270" x2="226" y2="270"/>
+    <line x1="0" y1="288" x2="226" y2="288"/>
+    <line x1="0" y1="306" x2="226" y2="306"/>
+    <line x1="0" y1="324" x2="226" y2="324"/>
+    <line x1="0" y1="342" x2="226" y2="342"/>
+    <line x1="0" y1="360" x2="226" y2="360"/>
+    <line x1="0" y1="378" x2="226" y2="378"/>
+    <line x1="0" y1="396" x2="226" y2="396"/>
+    <line x1="0" y1="414" x2="226" y2="414"/>
+    <line x1="0" y1="432" x2="226" y2="432"/>
+    <line x1="0" y1="450" x2="226" y2="450"/>
+    <line x1="0" y1="468" x2="226" y2="468"/>
+    <line x1="0" y1="486" x2="226" y2="486"/>
+    <line x1="0" y1="504" x2="226" y2="504"/>
+    <line x1="0" y1="522" x2="226" y2="522"/>
+    <line x1="0" y1="540" x2="226" y2="540"/>
+  </g>
+
+  <!-- Building windows above sign -->
+  <rect x="28"  y="8"  width="22" height="28" rx="2" fill="#B8C8D4" opacity="0.55"/>
+  <rect x="58"  y="8"  width="22" height="28" rx="2" fill="#B8C8D4" opacity="0.55"/>
+  <rect x="88"  y="8"  width="22" height="28" rx="2" fill="#B8C8D4" opacity="0.55"/>
+  <rect x="118" y="8"  width="22" height="28" rx="2" fill="#B8C8D4" opacity="0.55"/>
+  <rect x="148" y="8"  width="22" height="28" rx="2" fill="#B8C8D4" opacity="0.55"/>
+  <rect x="178" y="8"  width="22" height="28" rx="2" fill="#B8C8D4" opacity="0.55"/>
+  <!-- Window reflections -->
+  <rect x="29"  y="9"  width="8"  height="7" rx="1" fill="white" opacity="0.25"/>
+  <rect x="59"  y="9"  width="8"  height="7" rx="1" fill="white" opacity="0.25"/>
+  <rect x="89"  y="9"  width="8"  height="7" rx="1" fill="white" opacity="0.25"/>
+  <rect x="119" y="9"  width="8"  height="7" rx="1" fill="white" opacity="0.25"/>
+  <rect x="149" y="9"  width="8"  height="7" rx="1" fill="white" opacity="0.25"/>
+  <rect x="179" y="9"  width="8"  height="7" rx="1" fill="white" opacity="0.25"/>
+  <!-- Horizontal architectural band -->
+  <rect x="0" y="40" width="226" height="7" fill="#AAAAAA" opacity="0.5"/>
+
+  <!-- Wall right-edge shadow -->
+  <rect x="217" y="0" width="9" height="560" fill="#6A6A62" opacity="0.45"/>
+
+  <!-- ===== SPOTSHARE SIGN (mounted on wall) ===== -->
+  <!-- Sign drop shadow on wall -->
+  <rect x="34" y="68" width="6" height="264" fill="#707068" opacity="0.25"/>
+  <rect x="34" y="68" width="154" height="5"  fill="#707068" opacity="0.18"/>
+  <!-- Sign itself -->
+  <image href="parking-sign.svg" xlink:href="parking-sign.svg"
+         x="36" y="66" width="152" height="259"/>
+  <!-- Mounting screws (4 corners) -->
+  <circle cx="42"  cy="73"  r="4.5" fill="#7E7E76"/>
+  <circle cx="42"  cy="73"  r="2"   fill="#AAAAAA"/>
+  <circle cx="182" cy="73"  r="4.5" fill="#7E7E76"/>
+  <circle cx="182" cy="73"  r="2"   fill="#AAAAAA"/>
+  <circle cx="42"  cy="318" r="4.5" fill="#7E7E76"/>
+  <circle cx="42"  cy="318" r="2"   fill="#AAAAAA"/>
+  <circle cx="182" cy="318" r="4.5" fill="#7E7E76"/>
+  <circle cx="182" cy="318" r="2"   fill="#AAAAAA"/>
+
+  <!-- ===== PARKING LOT ASPHALT ===== -->
+  <rect x="0" y="386" width="900" height="174" fill="url(#asphaltGrad)"/>
+
+  <!-- Asphalt expansion joints -->
+  <line x1="0"   y1="420" x2="900" y2="420" stroke="#424242" stroke-width="1.2" opacity="0.4"/>
+  <line x1="0"   y1="462" x2="900" y2="462" stroke="#424242" stroke-width="1"   opacity="0.3"/>
+  <line x1="0"   y1="510" x2="900" y2="510" stroke="#424242" stroke-width="1"   opacity="0.3"/>
+
+  <!-- Wall-ground junction curb -->
+  <rect x="0" y="383" width="226" height="8" fill="#909088"/>
+
+  <!-- ===== PARKING SPACE MARKINGS ===== -->
+  <!-- Far line (at wall base) -->
+  <rect x="226" y="386" width="674" height="3.5" fill="white" opacity="0.55"/>
+
+  <!-- Left line of active space (car is between left & right) -->
+  <rect x="405" y="386" width="3" height="174" fill="white" opacity="0.88"/>
+  <!-- Right line of active space -->
+  <rect x="672" y="386" width="3" height="174" fill="white" opacity="0.88"/>
+  <!-- Adjacent bay lines -->
+  <rect x="253" y="386" width="2.5" height="174" fill="white" opacity="0.68"/>
+  <rect x="678" y="386" width="2.5" height="174" fill="white" opacity="0.55"/>
+  <rect x="835" y="386" width="2.5" height="174" fill="white" opacity="0.55"/>
+
+  <!-- ===== CAR (silver sedan, side view, nose toward wall / left) ===== -->
+  <!-- Car shadow on asphalt -->
+  <ellipse cx="540" cy="496" rx="132" ry="13" fill="url(#carShadow)"/>
+
+  <!-- Main chassis -->
+  <rect x="430" y="430" width="228" height="50" rx="8" fill="#D4D8DE"/>
+
+  <!-- Cabin / roof -->
+  <path d="M456,430 L476,392 L578,392 L622,430 Z" fill="#C8CDD4"/>
+
+  <!-- Rear window (left, car faces left so rear is at right x=658) -->
+  <!-- Wait: if nose faces LEFT (wall side), front is at x=430, rear at x=658 -->
+  <!-- Rear window is at right side of cabin: near x=622 area -->
+  <path d="M582,427 L582,396 L616,396 L618,427 Z" fill="#74B4C4" opacity="0.82"/>
+
+  <!-- B-pillar -->
+  <rect x="510" y="395" width="5" height="35" fill="#A8ACB4"/>
+
+  <!-- Front window (large, angled – near x=456 area, left/front) -->
+  <path d="M462,427 L478,396 L506,396 L506,427 Z" fill="#74B4C4" opacity="0.82"/>
+
+  <!-- Roof highlight -->
+  <path d="M474,394 L578,394" stroke="white" stroke-width="1.8" opacity="0.38"/>
+
+  <!-- Side body upper highlight line -->
+  <path d="M434,440 Q540,434 654,440" stroke="white" stroke-width="1.4" opacity="0.28"/>
+
+  <!-- Wheel arches (recesses) -->
+  <path d="M444,468 Q468,438 492,468" fill="#C8CDD4"/>
+  <path d="M588,468 Q612,438 636,468" fill="#C8CDD4"/>
+
+  <!-- Door line -->
+  <line x1="518" y1="430" x2="518" y2="470" stroke="#B0B4BC" stroke-width="1.8"/>
+
+  <!-- Front bumper + headlight (LEFT side = front since car faces left) -->
+  <rect x="428" y="444" width="7"  height="16" rx="3" fill="#BBC0C8"/>
+  <rect x="429" y="432" width="6"  height="14" rx="2" fill="#FFFCE8"/>
+  <rect x="430" y="433" width="4"  height="8"  rx="1" fill="#FFE880" opacity="0.8"/>
+  <!-- Front grille hint -->
+  <rect x="429" y="448" width="5"  height="22" rx="2" fill="#AEB3BB" opacity="0.6"/>
+
+  <!-- Rear bumper + taillight (RIGHT side = rear) -->
+  <rect x="653" y="440" width="8"  height="20" rx="3" fill="#BBC0C8"/>
+  <rect x="654" y="430" width="6"  height="18" rx="2" fill="#BB1111"/>
+  <rect x="655" y="431" width="4"  height="8"  rx="1" fill="#FF4444"/>
+
+  <!-- Front wheel (left, front of car) -->
+  <circle cx="468" cy="474" r="23" fill="#242424"/>
+  <circle cx="468" cy="474" r="15" fill="#585858"/>
+  <circle cx="468" cy="474" r="7"  fill="#303030"/>
+  <circle cx="468" cy="474" r="3"  fill="#808080"/>
+  <!-- Wheel highlight -->
+  <path d="M456,462 Q468,458 480,466" stroke="white" stroke-width="1.2" fill="none" opacity="0.25"/>
+
+  <!-- Rear wheel (right) -->
+  <circle cx="612" cy="474" r="23" fill="#242424"/>
+  <circle cx="612" cy="474" r="15" fill="#585858"/>
+  <circle cx="612" cy="474" r="7"  fill="#303030"/>
+  <circle cx="612" cy="474" r="3"  fill="#808080"/>
+  <path d="M600,462 Q612,458 624,466" stroke="white" stroke-width="1.2" fill="none" opacity="0.25"/>
+
+  <!-- Subtle wet-asphalt reflection under car -->
+  <rect x="435" y="496" width="220" height="18" rx="4"
+        fill="#D4D8DE" opacity="0.10"/>
+
+</svg>
