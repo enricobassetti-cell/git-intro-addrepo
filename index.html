@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frontend Design</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <div class="nav__logo">Design</div>
+      <ul class="nav__links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__content">
+        <h1 class="hero__title">Build Beautiful<br />Interfaces</h1>
+        <p class="hero__subtitle">A clean, modern frontend design system to kickstart your projects.</p>
+        <div class="hero__actions">
+          <a href="#features" class="btn btn--primary">Get Started</a>
+          <a href="#about" class="btn btn--outline">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <h2 class="section-title">Features</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="card__icon">&#9670;</div>
+          <h3 class="card__title">Responsive</h3>
+          <p class="card__text">Looks great on all screen sizes, from mobile to desktop.</p>
+        </div>
+        <div class="card">
+          <div class="card__icon">&#9651;</div>
+          <h3 class="card__title">Minimal</h3>
+          <p class="card__text">Clean design with no unnecessary dependencies or bloat.</p>
+        </div>
+        <div class="card">
+          <div class="card__icon">&#9675;</div>
+          <h3 class="card__title">Accessible</h3>
+          <p class="card__text">Built with semantic HTML and accessibility best practices.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="about__content">
+        <h2 class="section-title">About</h2>
+        <p>This project is a starting point for building modern web interfaces. It uses plain HTML, CSS, and JavaScript — no build tools required.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2 class="section-title">Contact</h2>
+      <form class="form" id="contactForm">
+        <div class="form__group">
+          <label class="form__label" for="name">Name</label>
+          <input class="form__input" type="text" id="name" placeholder="Your name" required />
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="email">Email</label>
+          <input class="form__input" type="email" id="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="message">Message</label>
+          <textarea class="form__input form__textarea" id="message" placeholder="Your message..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary">Send Message</button>
+      </form>
+      <p id="formStatus" class="form__status" hidden></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Frontend Design. All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
