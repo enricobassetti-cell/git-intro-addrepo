@@ -1,0 +1,40 @@
+{
+  "mcpServers": {
+    "code-reviewer": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "code-review-mcp"],
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+      }
+    },
+    "valyu": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@valyuai/valyu-mcp-js"],
+      "env": {
+        "VALYU_API_KEY": "${VALYU_API_KEY}"
+      }
+    },
+    "google-workspace": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@presto-ai/google-workspace-mcp"],
+      "env": {
+        "GOOGLE_CLIENT_ID": "${GOOGLE_CLIENT_ID}",
+        "GOOGLE_CLIENT_SECRET": "${GOOGLE_CLIENT_SECRET}",
+        "GOOGLE_REDIRECT_URI": "${GOOGLE_REDIRECT_URI}"
+      }
+    },
+    "browser-use": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"]
+    },
+    "excalidraw": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@cmd8/excalidraw-mcp"]
+    }
+  }
+}
