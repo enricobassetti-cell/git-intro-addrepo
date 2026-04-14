@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpotShare – Bodenaufkleber Mockup</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #111; color: #eee; font-family: -apple-system, Arial, sans-serif; }
+
+    header {
+      background: linear-gradient(135deg, #0A1628, #1a2a4a);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 3px solid #2563EB;
+    }
+    header h1 { font-size: 17px; color: white; letter-spacing: 0.3px; }
+    .badge {
+      background: #2563EB;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 10px;
+      letter-spacing: 1px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #1a1a1a;
+      border-bottom: 1px solid #2a2a2a;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .upload-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding: 10px 18px;
+      background: #222;
+      border: 2px dashed #444;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      min-width: 148px;
+    }
+    .upload-btn:hover { border-color: #2563EB; background: #1a1f2e; }
+    .upload-btn.loaded { border-color: #22C55E; border-style: solid; background: #0f1f13; }
+    .upload-btn input { display: none; }
+    .upload-btn .icon { font-size: 22px; }
+    .upload-btn .lbl { font-size: 12px; color: #999; font-weight: 600; }
+    .upload-btn .st { font-size: 11px; color: #666; }
+    .upload-btn.loaded .st { color: #22C55E; }
+
+    .slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .slider-group label {
+      font-size: 12px;
+      color: #888;
+    }
+    .slider-group label span { color: #ccc; font-weight: 700; }
+    input[type=range] {
+      width: 130px;
+      accent-color: #2563EB;
+    }
+
+    .btn {
+      padding: 9px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.15s;
+    }
+    .btn-ghost { background: #2a2a2a; color: #bbb; }
+    .btn-ghost:hover { background: #3a3a3a; color: white; }
+    .btn-blue { background: #2563EB; color: white; }
+    .btn-blue:hover { background: #1D4ED8; }
+
+    .hint-bar {
+      text-align: center;
+      padding: 7px;
+      font-size: 13px;
+      color: #555;
+      background: #0e0e0e;
+      border-bottom: 1px solid #1e1e1e;
+    }
+    .hint-bar.active { color: #FFD700; background: #1a1500; border-color: #3a3000; }
+
+    .canvas-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 20px 16px;
+      background: #0a0a0a;
+      overflow: auto;
+    }
+    canvas {
+      border: 1px solid #2a2a2a;
+      border-radius: 4px;
+      max-width: 100%;
+      touch-action: none;
+      cursor: crosshair;
+      box-shadow: 0 4px 24px #000a;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      padding: 18px;
+      background: #111;
+      border-top: 1px solid #1e1e1e;
+    }
+
+    /* Placeholder text on empty canvas */
+    .placeholder {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      text-align: center;
+      color: #444;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>&#128247; SpotShare Bodenaufkleber Mockup</h1>
+  <span class="badge">TOOL</span>
+</header>
+
+<div class="controls">
+  <label class="upload-btn" id="bgBtn">
+    <input type="file" id="bgInput" accept="image/*">
+    <span class="icon">&#127968;</span>
+    <span class="lbl">Parkplatz-Foto</span>
+    <span class="st" id="bgSt">Bild ausw&#228;hlen&#8230;</span>
+  </label>
+
+  <label class="upload-btn" id="stickerBtn">
+    <input type="file" id="stickerInput" accept="image/*">
+    <span class="icon">&#127991;&#65039;</span>
+    <span class="lbl">Schild / Aufkleber</span>
+    <span class="st" id="stickerSt">Bild ausw&#228;hlen&#8230;</span>
+  </label>
+
+  <div class="slider-group">
+    <label>Transparenz: <span id="opVal">85</span>%</label>
+    <input type="range" id="opInput" min="10" max="100" value="85">
+  </div>
+
+  <div class="slider-group">
+    <label>Helligkeit: <span id="brVal">88</span>%</label>
+    <input type="range" id="brInput" min="20" max="110" value="88">
+  </div>
+
+  <button class="btn btn-ghost" onclick="resetHandles()">&#8635; Zur&#252;cksetzen</button>
+</div>
+
+<div class="hint-bar" id="hintBar">
+  Schritt 1: Lade dein Parkplatz-Foto hoch
+</div>
+
+<div class="canvas-wrap">
+  <canvas id="canvas" width="800" height="600"></canvas>
+</div>
+
+<div class="actions">
+  <button class="btn btn-ghost" onclick="resetHandles()">&#8635; Position zur&#252;cksetzen</button>
+  <button class="btn btn-blue" onclick="downloadImg()">&#128190; Bild herunterladen</button>
+</div>
+
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  let bgImg = null, stickerImg = null;
+  let handles = [];
+  let dragging = -1;
+  const HR = 12; // handle radius
+
+  // ── Default handle positions ──────────────────────────
+  function defaultHandles(w, h) {
+    return [
+      { x: w * 0.28, y: h * 0.50 }, // TL
+      { x: w * 0.65, y: h * 0.50 }, // TR
+      { x: w * 0.76, y: h * 0.88 }, // BR
+      { x: w * 0.17, y: h * 0.88 }, // BL
+    ];
+  }
+
+  function resetHandles() {
+    handles = defaultHandles(canvas.width, canvas.height);
+    render();
+  }
+
+  // ── File uploads ──────────────────────────────────────
+  document.getElementById('bgInput').addEventListener('change', e => {
+    const f = e.target.files[0]; if (!f) return;
+    const img = new Image();
+    img.onload = () => {
+      bgImg = img;
+      const maxW = 900;
+      const sc = Math.min(1, maxW / img.width);
+      canvas.width  = Math.round(img.width  * sc);
+      canvas.height = Math.round(img.height * sc);
+      if (!handles.length) handles = defaultHandles(canvas.width, canvas.height);
+      document.getElementById('bgSt').textContent = '&#10003; Geladen';
+      document.getElementById('bgBtn').classList.add('loaded');
+      updateHint(); render();
+    };
+    img.src = URL.createObjectURL(f);
+  });
+
+  document.getElementById('stickerInput').addEventListener('change', e => {
+    const f = e.target.files[0]; if (!f) return;
+    const img = new Image();
+    img.onload = () => {
+      stickerImg = img;
+      document.getElementById('stickerSt').textContent = '&#10003; Geladen';
+      document.getElementById('stickerBtn').classList.add('loaded');
+      updateHint(); render();
+    };
+    img.src = URL.createObjectURL(f);
+  });
+
+  document.getElementById('opInput').addEventListener('input', e => {
+    document.getElementById('opVal').textContent = e.target.value;
+    render();
+  });
+  document.getElementById('brInput').addEventListener('input', e => {
+    document.getElementById('brVal').textContent = e.target.value;
+    render();
+  });
+
+  function updateHint() {
+    const bar = document.getElementById('hintBar');
+    if (!bgImg) {
+      bar.textContent = 'Schritt 1: Lade dein Parkplatz-Foto hoch';
+      bar.classList.remove('active');
+    } else if (!stickerImg) {
+      bar.textContent = 'Schritt 2: Lade das Schild-Design hoch';
+      bar.classList.remove('active');
+    } else {
+      bar.textContent = '&#9989; Ziehe die 4 gelben Ecken auf den Boden des Parkplatzes';
+      bar.classList.add('active');
+    }
+  }
+
+  // ── Perspective rendering ─────────────────────────────
+  function bilerp(pts, s, t) {
+    const top = { x: pts[0].x + s*(pts[1].x-pts[0].x), y: pts[0].y + s*(pts[1].y-pts[0].y) };
+    const bot = { x: pts[3].x + s*(pts[2].x-pts[3].x), y: pts[3].y + s*(pts[2].y-pts[3].y) };
+    return { x: top.x + t*(bot.x-top.x), y: top.y + t*(bot.y-top.y) };
+  }
+
+  function solve3(M, b) {
+    // Gaussian elimination on 3x3 system
+    const A = M.map((r,i) => [...r, b[i]]);
+    for (let col = 0; col < 3; col++) {
+      let mx = col;
+      for (let r = col+1; r < 3; r++) if (Math.abs(A[r][col]) > Math.abs(A[mx][col])) mx = r;
+      [A[col], A[mx]] = [A[mx], A[col]];
+      if (Math.abs(A[col][col]) < 1e-10) continue;
+      for (let r = 0; r < 3; r++) {
+        if (r === col) continue;
+        const f = A[r][col] / A[col][col];
+        for (let j = col; j <= 3; j++) A[r][j] -= f * A[col][j];
+      }
+    }
+    return A.map((r,i) => r[3] / r[i]);
+  }
+
+  function drawTri(ctx, img, sx0,sy0,sx1,sy1,sx2,sy2, dx0,dy0,dx1,dy1,dx2,dy2) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(dx0, dy0); ctx.lineTo(dx1, dy1); ctx.lineTo(dx2, dy2);
+    ctx.closePath(); ctx.clip();
+    const M = [[sx0,sy0,1],[sx1,sy1,1],[sx2,sy2,1]];
+    const [a,c,e] = solve3(M, [dx0,dx1,dx2]);
+    const [b,d,f] = solve3(M, [dy0,dy1,dy2]);
+    ctx.transform(a, b, c, d, e, f);
+    ctx.drawImage(img, 0, 0);
+    ctx.restore();
+  }
+
+  function drawPerspective(ctx, img, pts) {
+    const op = parseInt(document.getElementById('opInput').value);
+    const br = parseInt(document.getElementById('brInput').value);
+    const STEPS = 28;
+    ctx.save();
+    ctx.globalAlpha = op / 100;
+    ctx.filter = `brightness(${br}%)`;
+    for (let ty = 0; ty < STEPS; ty++) {
+      for (let tx = 0; tx < STEPS; tx++) {
+        const s0=tx/STEPS, s1=(tx+1)/STEPS, t0=ty/STEPS, t1=(ty+1)/STEPS;
+        const p00=bilerp(pts,s0,t0), p10=bilerp(pts,s1,t0);
+        const p11=bilerp(pts,s1,t1), p01=bilerp(pts,s0,t1);
+        const iw=img.width, ih=img.height;
+        const ix0=s0*iw, ix1=s1*iw, iy0=t0*ih, iy1=t1*ih;
+        drawTri(ctx,img, ix0,iy0,ix1,iy0,ix0,iy1, p00.x,p00.y,p10.x,p10.y,p01.x,p01.y);
+        drawTri(ctx,img, ix1,iy0,ix1,iy1,ix0,iy1, p10.x,p10.y,p11.x,p11.y,p01.x,p01.y);
+      }
+    }
+    ctx.restore();
+  }
+
+  // ── Main render ───────────────────────────────────────
+  function render(skipHandles) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (bgImg) {
+      ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+    } else {
+      ctx.fillStyle = '#1a1a1a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#333';
+      ctx.font = '16px Arial'; ctx.textAlign = 'center';
+      ctx.fillText('Parkplatz-Foto hochladen', canvas.width/2, canvas.height/2);
+    }
+
+    if (stickerImg && handles.length === 4) {
+      drawPerspective(ctx, stickerImg, handles);
+    }
+
+    if (!skipHandles && handles.length === 4) {
+      // Outline
+      ctx.beginPath();
+      ctx.moveTo(handles[0].x, handles[0].y);
+      for (let i=1;i<4;i++) ctx.lineTo(handles[i].x, handles[i].y);
+      ctx.closePath();
+      ctx.strokeStyle = 'rgba(255,215,0,0.6)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([6, 4]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Handles
+      handles.forEach((h, i) => {
+        ctx.beginPath();
+        ctx.arc(h.x, h.y, HR, 0, Math.PI*2);
+        ctx.fillStyle = dragging===i ? '#FF8C00' : '#FFD700';
+        ctx.fill();
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.fillStyle = '#111';
+        ctx.font = 'bold 9px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(['TL','TR','BR','BL'][i], h.x, h.y);
+      });
+    }
+  }
+
+  // ── Mouse / Touch ─────────────────────────────────────
+  function getPos(e) {
+    const r = canvas.getBoundingClientRect();
+    const sx = canvas.width / r.width, sy = canvas.height / r.height;
+    const cx = e.touches ? e.touches[0].clientX : e.clientX;
+    const cy = e.touches ? e.touches[0].clientY : e.clientY;
+    return { x: (cx - r.left)*sx, y: (cy - r.top)*sy };
+  }
+
+  function hitTest(p) {
+    for (let i=handles.length-1;i>=0;i--) {
+      const dx=p.x-handles[i].x, dy=p.y-handles[i].y;
+      if (Math.sqrt(dx*dx+dy*dy) <= HR*1.8) return i;
+    }
+    return -1;
+  }
+
+  canvas.addEventListener('mousedown', e => {
+    dragging = hitTest(getPos(e));
+    if (dragging>=0) canvas.style.cursor='grabbing';
+  });
+  canvas.addEventListener('mousemove', e => {
+    const p = getPos(e);
+    if (dragging>=0) { handles[dragging]=p; render(); }
+    else canvas.style.cursor = hitTest(p)>=0 ? 'grab' : 'crosshair';
+  });
+  canvas.addEventListener('mouseup', () => { dragging=-1; canvas.style.cursor='crosshair'; });
+  canvas.addEventListener('mouseleave', () => { dragging=-1; });
+
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); dragging=hitTest(getPos(e)); }, {passive:false});
+  canvas.addEventListener('touchmove',  e => { e.preventDefault(); if(dragging>=0){handles[dragging]=getPos(e);render();} }, {passive:false});
+  canvas.addEventListener('touchend',   () => { dragging=-1; });
+
+  // ── Download ──────────────────────────────────────────
+  function downloadImg() {
+    if (!bgImg) { alert('Bitte zuerst das Parkplatz-Foto hochladen.'); return; }
+    render(true); // render without handles
+    const a = document.createElement('a');
+    a.download = 'spotshare-bodenaufkleber.png';
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+    render(); // re-render with handles
+  }
+
+  // Init
+  resetHandles();
+  render();
+</script>
+</body>
+</html>
